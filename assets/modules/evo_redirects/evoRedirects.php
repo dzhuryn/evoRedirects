@@ -16,14 +16,14 @@ class evoRedirects
     public function __construct($modx)
     {
         $this->modx = $modx;
-        $this->table = $this->modx->db->getFullTableName('evo_redirects');
+        $this->table = $this->modx->getFullTableName('evo_redirects');
         $this->createTable();
     }
 
     public function checkRedirect($url){
         $eUrl = $this->modx->db->escape($url);
 
-        return $this->modx->db->getRow(        $this->modx->db->query(
+        return $this->modx->db->getRow($this->modx->db->query(
             "select * from $this->table where `old_url` = '$eUrl'"
         ));
     }
